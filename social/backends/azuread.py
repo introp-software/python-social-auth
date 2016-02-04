@@ -97,6 +97,9 @@ class AzureADOAuth2(BaseOAuth2):
         data = super(AzureADOAuth2, self).extra_data(user, uid, response,
             details, *args, **kwargs)
         data['resource'] = self.setting('RESOURCE')
+        data['client_id'] = self.setting('KEY')
+        data['secret'] = self.setting('SECRET')
+        data['token_url'] = self.ACCESS_TOKEN_URL
         return data
 
     def refresh_token_params(self, token, *args, **kwargs):
